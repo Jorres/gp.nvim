@@ -73,7 +73,7 @@ D.prepare_payload = function(messages, model, provider)
 	if type(model) == "string" then
 		return {
 			model = model,
-			stream = true,
+			stream = false,
 			messages = messages,
 		}
 	end
@@ -151,7 +151,7 @@ D.prepare_payload = function(messages, model, provider)
 
 		local payload = {
 			model = model.model,
-			stream = true,
+			stream = false,
 			messages = messages,
 			system = system,
 			max_completion_tokens = model.max_tokens or 4096,
@@ -167,7 +167,7 @@ D.prepare_payload = function(messages, model, provider)
 
 	local output = {
 		model = model.model,
-		stream = true,
+		stream = false,
 		messages = messages,
 		max_completion_tokens = model.max_tokens or 4096,
 		temperature = math.max(0, math.min(2, model.temperature or 1)),

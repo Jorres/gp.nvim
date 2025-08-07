@@ -154,7 +154,7 @@ D.prepare_payload = function(messages, model, provider)
 			stream = true,
 			messages = messages,
 			system = system,
-			max_tokens = model.max_tokens or 4096,
+			max_completion_tokens = model.max_tokens or 4096,
 			temperature = math.max(0, math.min(2, model.temperature or 1)),
 			top_p = math.max(0, math.min(1, model.top_p or 1)),
 		}
@@ -396,7 +396,7 @@ local query = function(buf, provider, payload, handler, on_exit, callback)
 	end
 
 	local temp_file = D.query_dir ..
-		"/" .. logger.now() .. "." .. string.format("%x", math.random(0, 0xFFFFFF)) .. ".json"
+					"/" .. logger.now() .. "." .. string.format("%x", math.random(0, 0xFFFFFF)) .. ".json"
 	helpers.table_to_file(payload, temp_file)
 
 	local curl_params = vim.deepcopy(D.config.curl_params or {})
